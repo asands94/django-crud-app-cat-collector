@@ -26,16 +26,26 @@
   <section class="feedings">
     <div class="subsection-title">
       <h2>Feedings</h2>
-      <img src="{% static 'images/cat-cone.svg' %}" alt="An ice cream cone cat" />
+      <img
+        src="{% static 'images/cat-cone.svg' %}"
+        alt="An ice cream cone cat"
+      />
       <img src="{% static 'images/cat-onigiri.svg' %}" alt="A cat as onigiri" />
-      <img src="{% static 'images/kitty-kabob.svg' %}" alt="A kabob of kittens" />
+      <img
+        src="{% static 'images/kitty-kabob.svg' %}"
+        alt="A kabob of kittens"
+      />
     </div>
 
     <h3>Add a Feeding</h3>
     <!-- Add just above the feedings table -->
-    <form action="{% url 'add-feeding' cat.id %}" method="post" class="subsection-content" autocomplete="off">
-      {% csrf_token %}
-      {{ feeding_form.as_p }}
+    <form
+      action="{% url 'cat-detail' cat.id %}"
+      method="post"
+      class="subsection-content"
+      autocomplete="off"
+    >
+      {% csrf_token %} {{ feeding_form.as_p }}
       <button type="submit" class="btn submit">Add Feeding</button>
     </form>
 
@@ -62,7 +72,6 @@
       <p>⚠️ {{cat.name}} has not been fed!</p>
     </div>
     {% endif %}
-
   </section>
 
   <section class="toys">
@@ -76,10 +85,12 @@
     <!-- displaying a cat's toys -->
     <h3>{{ cat.name }}'s Toys</h3>
     <div class="subsection-content">
-      {% if cat.toys.count %}
-      {% for toy in cat.toys.all %}
+      {% if cat.toys.count %} {% for toy in cat.toys.all %}
       <div class="toy-container">
-        <div class="color-block" style="background-color: {{ toy.color }}"></div>
+        <div
+          class="color-block"
+          style="background-color: {{ toy.color }}"
+        ></div>
         <a href="{% url 'toy-detail' toy.id %}">
           <p>A {{ toy.color }} {{ toy.name }}</p>
         </a>
@@ -88,18 +99,19 @@
           <button type="submit" class="btn btn-danger">Remove Toy</button>
         </form>
       </div>
-      {% endfor %}
-      {% else %}
+      {% endfor %} {% else %}
       <p class="no-toys">{{cat.name}} doesn't have any toys!</p>
       {% endif %}
     </div>
 
     <h3>Available Toys</h3>
     <div class="subsection-content">
-      {% if toys.count %}
-      {% for toy in toys.all %}
+      {% if toys.count %} {% for toy in toys.all %}
       <div class="toy-container">
-        <div class="color-block" style="background-color: {{ toy.color }}"></div>
+        <div
+          class="color-block"
+          style="background-color: {{ toy.color }}"
+        ></div>
         <a href="{% url 'toy-detail' toy.id %}">
           <p>A {{ toy.color }} {{ toy.name }}</p>
         </a>
@@ -108,12 +120,10 @@
           <button type="submit" class="btn submit">Give toy</button>
         </form>
       </div>
-      {% endfor %}
-      {% else %}
+      {% endfor %} {% else %}
       <p class="all-toys">{{cat.name}} already has all the available toys 🥳</p>
       {% endif %}
     </div>
-
   </section>
 </div>
 
