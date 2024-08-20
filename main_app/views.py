@@ -8,12 +8,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Cat, Toy, Feeding
 from .forms import FeedingForm
+from django.contrib.auth.models import AnonymousUser
 
 # Create your views here.
 
 # Define the home view
 class Home(LoginView):
   template_name = 'home.html'
+
+  # def get_context_data(self, **kwargs):
+  #   context = super().get_context_data(**kwargs)
+  #   context['cats'] = Cat.objects.all()
+    
+  #   print(context)
+  #   if (self.request.user != AnonymousUser()):
+  #      context['user_cats'] = Cat.objects.filter(user=self.request.user)
+  #      return context
+  #   else:
+  #      return context
 
 def about(request):
   return render(request, 'about.html')
