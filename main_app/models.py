@@ -32,7 +32,7 @@ class Cat(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('cat-detail', kwargs={'pk': self.id})
+       return reverse('cat-detail', kwargs={'pk': self.id})
     
 class Feeding(models.Model):
     date = models.DateField('Feeding date')

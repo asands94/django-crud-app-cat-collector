@@ -16,17 +16,6 @@ from django.contrib.auth.models import AnonymousUser
 class Home(LoginView):
   template_name = 'home.html'
 
-  # def get_context_data(self, **kwargs):
-  #   context = super().get_context_data(**kwargs)
-  #   context['cats'] = Cat.objects.all()
-    
-  #   print(context)
-  #   if (self.request.user != AnonymousUser()):
-  #      context['user_cats'] = Cat.objects.filter(user=self.request.user)
-  #      return context
-  #   else:
-  #      return context
-
 def about(request):
   return render(request, 'about.html')
 
@@ -98,7 +87,8 @@ class ToyDetail(LoginRequiredMixin, DetailView):
 
 class ToyUpdate(LoginRequiredMixin, UpdateView):
   model = Toy
-  fields = ['name', 'color']
+  fields = '__all__'
+  exclude = ('color')
 
 class ToyDelete(LoginRequiredMixin, DeleteView):
   model = Toy
